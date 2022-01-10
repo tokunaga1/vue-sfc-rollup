@@ -17,6 +17,6 @@ export default <% if (version === 3) {%>defineComponent<% } else { %>Vue.extend<
 
 <template>
   <div id="app">
-    <<%-componentName%>-sample />
+    <<%-componentName%> />
   </div>
 </template>

@@ -6,6 +6,9 @@ import _Vue, { PluginObject } from 'vue';
 
 // Import vue component
 import component from '@/<%-componentName%>.vue';
+<% if (storeModuleName) { -%>
+import <%- storeModuleName %> from './<%- storeModuleName %>';
+<% } -%>
 
 <% if (ts) { -%>
 // Define typescript interfaces for installable component
@@ -27,10 +30,17 @@ export default /*#__PURE__*/(()<% if (ts) { %>: InstallableComponent<% } %> => {
 <% if (ts) { -%>
   installable.install = (<% if (version === 3) { %>app: App<% } else { %>Vue: typeof _Vue<% } %>) => {
 <% } else { -%>
-  installable.install = (<% if (version === 3) { %>app<% } else { %>Vue<% } %>) => {
+  installable.install = (<% if (version === 3) { %>app<% } else if (storeModuleName) { %>Vue, options = {}<% } else { %>Vue<% } %>) => {
 <% } -%>
     <% if (version === 3) { %>app<% } else { %>Vue<% } %>.component('<%-componentNamePascal%>', installable);
   };
+<% if (storeModuleName) { %>
+  if (options.store) {
+    options.store.registerModule('<%- storeModuleName %>', <%- storeModuleName %>);
+  } else {
+    console.log('Please provide a store for <%- storeModuleName %>!!');
+  }
+<% } %>
   return installable;
 })();
 

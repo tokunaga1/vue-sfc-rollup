@@ -188,6 +188,36 @@ async function getLanguage() {
   responses.language = response.language;
 }
 
+async function getStoreModule() {
+  let tmpKebabName = '';
+
+  // If provided via arg, skip this step
+  if (argv.store) {
+    responses.store = helpers.convertScope(argv.store, '_');
+    return;
+  }
+
+  // Not provided via arg, show prompts
+  const questions = [
+    {
+      type: 'text',
+      name: 'store',
+      message: 'What is the name of your store module?',
+    },
+  ];
+
+  const response = await prompts(questions, {
+    onSubmit(prompt, answer) {
+      tmpKebabName = helpers.kebabcase(answer).trim();
+    },
+    onCancel,
+  });
+
+  responses.store = (response.store)
+    ? response.store
+    : helpers.convertScope(tmpKebabName);
+}
+
 async function getSavePath() {
   // If write provided via arg, skip this step
   if (argv.write) return;
@@ -226,6 +256,7 @@ function scaffold(data) {
     componentName: data.componentName,
     version: data.version,
     ts: data.language === 'ts',
+    storeModuleName: data.store || null,
   };
   const files = {
     common: [
@@ -234,6 +265,7 @@ function scaffold(data) {
       { 'src/entry.ts': `src/entry.${data.language}` },
       { 'dev/serve.ts': `dev/serve.${data.language}` },
       'dev/serve.vue',
+      'dev/store.js',
       { '_template.browserslistrc': '.browserslistrc' },
       { '_template.gitignore': '.gitignore' },
       'babel.config.js',
@@ -246,7 +278,7 @@ function scaffold(data) {
       { 'single-package.json': 'package.json' },
     ],
     library: [
-      { 'src/lib-components/component.vue': `src/lib-components/${data.componentName}-sample.vue` },
+      { 'src/lib-components/component.vue': `src/lib-components/${data.componentName}.vue` },
       { 'src/lib-components/index.ts': `src/lib-components/index.${data.language}` },
       { 'library-package.json': 'package.json' },
     ],
@@ -285,6 +317,14 @@ function scaffold(data) {
     );
   });
 
+  /*
+   * cp -r store.module xxx
+   */
+  const src = path.join.apply(null, [__dirname, 'templates', 'store.module']);
+  const dest = path.join.apply(null, [data.savePath, 'src', (data.store) ? data.store : 'store.module']);
+  const options = { recursive: true };
+  fs.cpSync(src, dest, options);
+
   // Display completion messages
   let completeMessage;
   if (data.mode === 'component') {
@@ -319,6 +359,7 @@ checkForUpdates()
   .then(getMode)
   .then(getName)
   .then(getLanguage)
+  .then(getStoreModule)
   .then(getSavePath)
   .then(() => {
     scaffold(responses);

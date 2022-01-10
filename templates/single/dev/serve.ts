@@ -11,10 +11,16 @@ import Vue, { VNode } from 'vue';
 import Vue from 'vue';
 <% } -%>
 import Dev from './serve.vue';
+<% if (storeModuleName) { -%>
+import store from "./store.js";
+<% } -%>
 
 Vue.config.productionTip = false;
 
 new Vue({
+<% if (storeModuleName) { -%>
+  store,
+<% } -%>
 <% if (ts) { -%>
   render: (h): VNode => h(Dev),
 <% } else { -%>

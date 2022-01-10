@@ -16,6 +16,9 @@ import Vue, { VNode } from 'vue';
 import Vue from 'vue';
 <% } -%>
 import Dev from './serve.vue';
+<% if (storeModuleName) { -%>
+import store from "./store.js";
+<% } -%>
 // To register individual components where they are used (serve.vue) instead of using the
 // library as a whole, comment/remove this import and it's corresponding "Vue.use" call
 import <%-componentNamePascal%> from '@/entry.esm';
@@ -24,6 +27,9 @@ Vue.use(<%-componentNamePascal%>);
 Vue.config.productionTip = false;
 
 new Vue({
+<% if (storeModuleName) { -%>
+  store,
+<% } -%>
 <% if (ts) { -%>
   render: (h): VNode => h(Dev),
 <% } else { -%>

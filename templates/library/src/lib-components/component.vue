@@ -63,7 +63,7 @@ export default /*#__PURE__*/<% if (version === 3) {%>defineComponent(<% } else i
 </script>
 
 <template>
-  <div class="<%-componentName%>-sample">
+  <div class="<%-componentName%>">
     <p>The counter was {{ changedBy }} to <b>{{ counter }}</b>.</p>
     <button @click="increment">
       Click +1
@@ -84,7 +84,7 @@ export default /*#__PURE__*/<% if (version === 3) {%>defineComponent(<% } else i
 </template>
 
 <style scoped>
-  .<%-componentName%>-sample {
+  .<%-componentName%> {
     display: block;
     width: 400px;
     margin: 25px auto;
@@ -93,7 +93,7 @@ export default /*#__PURE__*/<% if (version === 3) {%>defineComponent(<% } else i
     text-align: center;
     padding: 25px;
   }
-  .<%-componentName%>-sample p {
+  .<%-componentName%> p {
     margin: 0 0 1em;
   }
 </style>
