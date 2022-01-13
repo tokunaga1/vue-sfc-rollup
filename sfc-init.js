@@ -269,6 +269,7 @@ function scaffold(data) {
       { '_template.browserslistrc': '.browserslistrc' },
       { '_template.gitignore': '.gitignore' },
       'babel.config.js',
+      'vue.config.js',
       (data.language === 'ts' && data.version === 2) ? 'shims-tsx.d.ts' : null,
       (data.language === 'ts') ? 'shims-vue.d.ts' : null,
       (data.language === 'ts') ? 'tsconfig.json' : null,
@@ -321,7 +322,7 @@ function scaffold(data) {
    * cp -r store.module xxx
    */
   const src = path.join.apply(null, [__dirname, 'templates', 'store.module']);
-  const dest = path.join.apply(null, [data.savePath, 'src', (data.store) ? data.store : 'store.module']);
+  const dest = path.join.apply(null, [data.savePath, 'src', 'store', (data.store) ? data.store : 'store.module']);
   const options = { recursive: true };
   fs.cpSync(src, dest, options);
 

@@ -9,7 +9,7 @@ import _Vue, { PluginFunction } from 'vue';
 // Import vue components
 import * as components from '@/lib-components/index';
 <% if (storeModuleName) { -%>
-import <%-storeModuleName%> from './<%-storeModuleName%>';
+import <%-storeModuleName%> from '@/store/<%-storeModuleName%>';
 <% } -%>
 
 // install function executed by Vue.use()

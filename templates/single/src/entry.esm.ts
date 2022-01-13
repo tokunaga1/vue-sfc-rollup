@@ -7,7 +7,7 @@ import _Vue, { PluginObject } from 'vue';
 // Import vue component
 import component from '@/<%-componentName%>.vue';
 <% if (storeModuleName) { -%>
-import <%- storeModuleName %> from './<%- storeModuleName %>';
+import <%- storeModuleName %> from '@/store/<%- storeModuleName %>';
 <% } -%>
 
 <% if (ts) { -%>

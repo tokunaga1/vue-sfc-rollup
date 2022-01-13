@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 <% if (storeModuleName) { -%>
-import <%- storeModuleName %> from '@/<%- storeModuleName %>'
+import <%- storeModuleName %> from '@/store/<%- storeModuleName %>'
 <% } -%>
 
 Vue.use(Vuex)
