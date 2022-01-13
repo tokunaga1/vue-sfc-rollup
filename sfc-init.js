@@ -322,7 +322,7 @@ function scaffold(data) {
    * cp -r store.module xxx
    */
   const src = path.join.apply(null, [__dirname, 'templates', 'store.module']);
-  const dest = path.join.apply(null, [data.savePath, 'src', 'store', (data.store) ? data.store : 'store.module']);
+  const dest = path.join.apply(null, [data.savePath, 'src', 'store', (data.store) ? data.store : data.componentName]);
   const options = { recursive: true };
   fs.cpSync(src, dest, options);
 
