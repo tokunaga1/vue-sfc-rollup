@@ -28,6 +28,9 @@
   },
 
   "dependencies": {
+<% if (storeModuleName) { -%>
+    "vuex": "^3.6.2"
+<% } -%>
   },
 
   "devDependencies": {

@@ -12,7 +12,7 @@ import Vue from 'vue';
 <% } -%>
 import Dev from './serve.vue';
 <% if (storeModuleName) { -%>
-import store from "./store.js";
+import store from "./store";
 <% } -%>
 
 Vue.config.productionTip = false;
