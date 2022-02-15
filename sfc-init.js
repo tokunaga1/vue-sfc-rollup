@@ -96,8 +96,8 @@ async function getMode() {
     name: 'mode',
     message: 'Is this a single component or a library?',
     choices: [
-      { title: 'Single Component', value: 'component' },
       { title: 'Library', value: 'library' },
+      { title: 'Single Component', value: 'component' },
     ],
     initial: 0,
   };
