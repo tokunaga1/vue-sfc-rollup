@@ -9,6 +9,7 @@ if (ts) { -%>
 import Vue, { VNode } from 'vue';
 <% } else { -%>
 import Vue from 'vue';
+import router from './router'
 <% } -%>
 import Dev from './serve.vue';
 <% if (storeModuleName) { -%>
@@ -24,6 +25,7 @@ new Vue({
 <% if (ts) { -%>
   render: (h): VNode => h(Dev),
 <% } else { -%>
+  router,
   render: (h) => h(Dev),
 <% } -%>
 }).$mount('#app');
