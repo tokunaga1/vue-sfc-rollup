@@ -265,6 +265,7 @@ function scaffold(data) {
       { 'src/entry.ts': `src/entry.${data.language}` },
       { 'dev/serve.ts': `dev/serve.${data.language}` },
       { 'dev/serve.App.ts': `dev/serve.App.${data.language}` },
+      { 'dev/store/index.ts': `dev/store/index.${data.language}` },
       { 'dev/router/index.js': 'dev/router/index.js' },
       { 'dev/views/HomeView.vue': 'dev/views/HomeView.vue' },
       'dev/serve.vue',
