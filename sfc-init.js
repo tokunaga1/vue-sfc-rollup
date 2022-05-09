@@ -372,12 +372,12 @@ function scaffold(data) {
 
 // Begin asking for input, then scaffold
 checkForUpdates()
-  .then(getRouterModule)
   .then(getVersion)
   .then(getMode)
   .then(getName)
   .then(getLanguage)
   .then(getStoreModule)
+  .then(getRouterModule)
   .then(getSavePath)
   .then(() => {
     scaffold(responses);
