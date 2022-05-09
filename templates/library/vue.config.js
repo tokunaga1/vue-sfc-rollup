@@ -15,6 +15,7 @@ module.exports = {
       mapGetters: ['vuex', 'mapGetters'],
       mapMutations: ['vuex', 'mapMutations'],
       mapActions: ['vuex', 'mapActions'],
+      _: 'lodash',
     }))
   }
 <% } -%>
