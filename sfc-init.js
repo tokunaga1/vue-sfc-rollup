@@ -218,6 +218,18 @@ async function getStoreModule() {
     : helpers.convertScope(tmpKebabName);
 }
 
+async function getRouterModule () {
+  const question = {
+    type: 'confirm',
+    name: 'router',
+    message: 'Will you use router?',
+    initial: false,
+  };
+
+  const response = await prompts(question, { onCancel });
+  response.router = response.router;
+}
+
 async function getSavePath() {
   // If write provided via arg, skip this step
   if (argv.write) return;
@@ -257,6 +269,7 @@ function scaffold(data) {
     version: data.version,
     ts: data.language === 'ts',
     storeModuleName: data.store || null,
+    router: data.router,
   };
   const files = {
     common: [
@@ -364,6 +377,7 @@ checkForUpdates()
   .then(getName)
   .then(getLanguage)
   .then(getStoreModule)
+  .then(getRouterModule)
   .then(getSavePath)
   .then(() => {
     scaffold(responses);

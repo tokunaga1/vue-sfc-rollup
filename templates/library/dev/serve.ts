@@ -14,12 +14,16 @@ if (ts) { -%>
 import Vue, { VNode } from 'vue';
 <% } else { -%>
 import Vue from 'vue';
-import router from './router'
 <% } -%>
 import Dev from './serve.vue';
 <% if (storeModuleName) { -%>
 import store from "./store";
 <% } -%>
+
+<% if (router) { -%>
+import router from './router'
+<% } -%>
+
 // To register individual components where they are used (serve.vue) instead of using the
 // library as a whole, comment/remove this import and it's corresponding "Vue.use" call
 import <%-componentNamePascal%> from '@/entry.esm';
@@ -31,10 +35,12 @@ new Vue({
 <% if (storeModuleName) { -%>
   store,
 <% } -%>
+<% if (router) { -%>
+  router,
+<% } -%>
 <% if (ts) { -%>
   render: (h): VNode => h(Dev),
 <% } else { -%>
-  router,
   render: (h) => h(Dev),
 <% } -%>
 }).$mount('#app');
