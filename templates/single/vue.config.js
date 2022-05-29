@@ -3,7 +3,6 @@ const webpack = require('webpack')
 module.exports = {
   pluginOptions: {
     // electronBuilder: {
-    //   nodeIntegration: true,
     //   mainProcessFile: 'dev/background.js',
     //   rendererProcessFile: 'dev/serve.js',
     // }
@@ -15,6 +14,7 @@ module.exports = {
       mapGetters: ['vuex', 'mapGetters'],
       mapMutations: ['vuex', 'mapMutations'],
       mapActions: ['vuex', 'mapActions'],
+      _: 'lodash',
     }))
   }
 <% } -%>

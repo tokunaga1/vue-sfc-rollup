@@ -3,7 +3,6 @@ const webpack = require('webpack')
 module.exports = {
   pluginOptions: {
     // electronBuilder: {
-    //   nodeIntegration: true,
     //   mainProcessFile: 'dev/background.js',
     //   rendererProcessFile: 'dev/serve.js',
     // }
