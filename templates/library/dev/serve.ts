@@ -19,7 +19,6 @@ import Dev from './serve.vue';
 <% if (storeModuleName) { -%>
 import store from "./store";
 <% } -%>
-
 <% if (router) { -%>
 import router from './router'
 <% } -%>

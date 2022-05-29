@@ -271,25 +271,33 @@ function scaffold(data) {
     storeModuleName: data.store || null,
     router: data.router,
   };
-  const files = {
-    common: [
-      'build/rollup.config.js',
-      { 'src/entry.esm.ts': `src/entry.esm.${data.language}` },
-      { 'src/entry.ts': `src/entry.${data.language}` },
-      { 'dev/serve.ts': `dev/serve.${data.language}` },
-      { 'dev/serve.App.ts': `dev/serve.App.${data.language}` },
-      { 'dev/store/index.ts': `dev/store/index.${data.language}` },
+
+  const common = [
+    'build/rollup.config.js',
+    { 'src/entry.esm.ts': `src/entry.esm.${data.language}` },
+    { 'src/entry.ts': `src/entry.${data.language}` },
+    { 'dev/serve.ts': `dev/serve.${data.language}` },
+    { 'dev/serve.App.ts': `dev/serve.App.${data.language}` },
+    { 'dev/store/index.ts': `dev/store/index.${data.language}` },
+    'dev/serve.vue',
+    { '_template.browserslistrc': '.browserslistrc' },
+    { '_template.gitignore': '.gitignore' },
+    'babel.config.js',
+    'vue.config.js',
+    (data.language === 'ts' && data.version === 2) ? 'shims-tsx.d.ts' : null,
+    (data.language === 'ts') ? 'shims-vue.d.ts' : null,
+    (data.language === 'ts') ? 'tsconfig.json' : null,
+  ];
+
+  if (data.router) {
+    common.push(...[
       { 'dev/router/index.js': 'dev/router/index.js' },
       { 'dev/views/HomeView.vue': 'dev/views/HomeView.vue' },
-      'dev/serve.vue',
-      { '_template.browserslistrc': '.browserslistrc' },
-      { '_template.gitignore': '.gitignore' },
-      'babel.config.js',
-      'vue.config.js',
-      (data.language === 'ts' && data.version === 2) ? 'shims-tsx.d.ts' : null,
-      (data.language === 'ts') ? 'shims-vue.d.ts' : null,
-      (data.language === 'ts') ? 'tsconfig.json' : null,
-    ],
+    ]);
+  }
+
+  const files = {
+    common,
     single: [
       { 'src/component.vue': `src/${data.componentName}.vue` },
       { 'single-package.json': 'package.json' },
