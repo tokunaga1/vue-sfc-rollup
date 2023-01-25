@@ -26,7 +26,9 @@ import router from './router'
 // To register individual components where they are used (serve.vue) instead of using the
 // library as a whole, comment/remove this import and it's corresponding "Vue.use" call
 import <%-componentNamePascal%> from '@/entry.esm';
+import VueMeta from 'vue-meta';
 Vue.use(<%-componentNamePascal%><% if (storeModuleName) { %>, { store }<% } -%>);
+Vue.use(VueMeta)
 
 Vue.config.productionTip = false;
 
