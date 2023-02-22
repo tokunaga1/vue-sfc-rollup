@@ -285,7 +285,6 @@ function scaffold(data) {
     'babel.config.js',
     'vue.config.js',
     'README.md',
-    'README.css',
     (data.language === 'ts' && data.version === 2) ? 'shims-tsx.d.ts' : null,
     (data.language === 'ts') ? 'shims-vue.d.ts' : null,
     (data.language === 'ts') ? 'tsconfig.json' : null,
