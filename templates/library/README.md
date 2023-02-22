@@ -1,18 +1,26 @@
-# Install
+#
+
+## Install
 
 ```sh
+$ yarn add link:.../lib/xxx
 ```
 
-## plugins/nuxt.config/plugins.js
+### plugins/nuxt.config/plugins.js
 
 ```js
-import Vue from 'vue'
 import XXX from 'xxx'
 
 Vue.use(XXX, options)
 ```
 
 
-# Usage
+## Usage
 
+### .vue
 
+```html
+```
+
+```js
+```
