@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <<%-componentName%> />
+    <<% if (router) { %>router-view<% } else { %><%-componentName%><% } %> />
   </div>
 </template>
 
