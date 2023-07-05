@@ -288,12 +288,14 @@ function scaffold(data) {
     (data.language === 'ts' && data.version === 2) ? 'shims-tsx.d.ts' : null,
     (data.language === 'ts') ? 'shims-vue.d.ts' : null,
     (data.language === 'ts') ? 'tsconfig.json' : null,
+
+    'public/index.html',
   ];
 
   if (data.router) {
     common.push(...[
       { 'dev/router/index.js': 'dev/router/index.js' },
-      { 'dev/views/HomeView.vue': 'dev/views/HomeView.vue' },
+      { 'dev/views/index.vue': 'dev/views/index.vue' },
     ]);
   }
 
